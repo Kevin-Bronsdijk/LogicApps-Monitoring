@@ -3,8 +3,8 @@ Azure Logic App Monitoring
 Solution which will track failed Logic Apps workflow runs within Azure Applications Insight.
 
 * [Introduction](#introduction)
-* [Solution details](#Solution-details)
-* [Important to know](#Important-to-know)
+* [Solution details](#solution-details)
+* [Important to know](#important-to-know)
 
 ## Introduction
 
@@ -30,10 +30,10 @@ Example:
 
 Several things you will need to be aware of before using this solution:
  
-1) Only errors for workflow runs with a failure date greater that the start date if the WeJob will be reported. 
-2) The Free and Shared plans don’t include the Always On feature. This may result in the Webjob being unloaded. https://azure.microsoft.com/en-us/documentation/articles/web-sites-configure/
-3) The Webjob only keeps track of custom events and therefore not summiting any other type of WebJob related diagnostic information.  
-4) Not a real-time solution
+1. Only errors for workflow runs with a failure date greater that the start date if the WeJob will be reported. 
+2. The Free and Shared plans don’t include the Always On feature. This may result in the Webjob being unloaded. https://azure.microsoft.com/en-us/documentation/articles/web-sites-configure/
+3. The Webjob only keeps track of custom events and therefore not summiting any other type of WebJob related diagnostic information.
+4. Logging is not real-time
  
 
 
