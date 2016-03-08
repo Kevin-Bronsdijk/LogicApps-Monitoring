@@ -5,6 +5,7 @@ Solution which will track failed Logic Apps workflow runs within Azure Applicati
 * [Introduction](#introduction)
 * [Solution details](#solution-details)
 * [Important to know](#important-to-know)
+* [Deployment](#deployent)
 
 ## Introduction
 
@@ -21,10 +22,15 @@ The logging part of this solution depends on the Azure Application Insight monit
 In addition, the WebJob also writes run details within the WebJob log. This includes the amount of failed runs found for every pull as well as the run name. 
 
 Example:
-
----
-
----
+```
+ [03/08/2016 03:52:53 > be04cb: INFO] Found 0 failed workflow runs
+ [03/08/2016 03:53:20 > be04cb: INFO] Found 5 failed workflow runs
+ [03/08/2016 03:53:20 > be04cb: INFO] Workflow: test12345 run: 08587441976978562759 
+ [03/08/2016 03:53:20 > be04cb: INFO] Workflow: test12345 run: 08587441976995362404 
+ [03/08/2016 03:53:20 > be04cb: INFO] Workflow: test12345 run: 08587441977007368807 
+ [03/08/2016 03:53:20 > be04cb: INFO] Workflow: test12345 run: 08587441977022435721 
+ [03/08/2016 03:53:20 > be04cb: INFO] Workflow: test12345 run: 08587441977041226327 
+```
 
 ## Important to know
 
@@ -35,6 +41,15 @@ Several things you will need to be aware of before using this solution:
 3. The Webjob only keeps track of custom events and therefore not summiting any other type of WebJob related diagnostic information.
 4. Logging is not real-time
  
+## Deployment
+
+Deployment is simple given that this is just a WebJob however, will include some pointers asap. If you have knowledge of Azure WebJobs (Deployment) and Applications Insight, this should be a walk in the park.
+
+1. Create or use an existing WebApplication / Website 
+2. Create a new Application Insights environment use an existing environment 
+2. Download the project and make sure that the ApplicationInsights.config and App.config file are updated with your information
+3. Deploy the project using the Azure Deployment Wizard 
+4. Open Application Insights and Create a new Alert rule based on the custom metric called "Failed" which might not be there unless a failed run has been logged. (this label will likely change in the future)
 
 
  
