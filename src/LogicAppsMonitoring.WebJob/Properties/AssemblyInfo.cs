@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LogicAppsMonitoringWebJob")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Azure Logic App Monitoring WebJob")]
+[assembly: AssemblyDescription("Azure Logic App Monitoring WebJob")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LogicAppsMonitoringWebJob")]
+[assembly: AssemblyProduct("Azure Logic App Monitoring")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
