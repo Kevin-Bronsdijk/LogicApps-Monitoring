@@ -5,7 +5,7 @@ Solution which will track failed Logic Apps workflow runs within Azure Applicati
 * [Introduction](#introduction)
 * [Solution details](#solution-details)
 * [Important to know](#important-to-know)
-* [Deployment](#deployent)
+* [Deployment](#deployment)
 
 ## Introduction
 
