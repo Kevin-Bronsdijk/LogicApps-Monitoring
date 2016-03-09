@@ -1,5 +1,6 @@
 ﻿# LogicApps-Monitoring build script
-# V 1.0
+# V 1.1
+# Builds the solution and create the webjob .zip deloyment package
 
 # Get currect location
 $invocation = (Get-Variable MyInvocation).Value;
@@ -50,3 +51,11 @@ If (Test-Path $binDirLogic){
 If (Test-Path $objDirLogic){
 	Remove-Item $objDirLogic -Force -Recurse
 }
+
+# Create deployment package
+Get-ChildItem -Path $outputFolder -Include *.xml -File -Recurse | foreach { $_.Delete()};
+Get-ChildItem -Path $outputFolder -Include *.pdb -File -Recurse | foreach { $_.Delete()};
+Remove-Item ($baseDir + "\LogicAppsMonitoring-WebJob.zip")
+
+Add-Type -Assembly "System.IO.Compression.FileSystem" ;
+[System.IO.Compression.ZipFile]::CreateFromDirectory($outputFolder, "LogicAppsMonitoring-WebJob.zip") ;
