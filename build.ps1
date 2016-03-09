@@ -55,7 +55,9 @@ If (Test-Path $objDirLogic){
 # Create deployment package
 Get-ChildItem -Path $outputFolder -Include *.xml -File -Recurse | foreach { $_.Delete()};
 Get-ChildItem -Path $outputFolder -Include *.pdb -File -Recurse | foreach { $_.Delete()};
-Remove-Item ($baseDir + "\LogicAppsMonitoring-WebJob.zip")
+if (Test-Path ($baseDir + "\LogicAppsMonitoringWebJob.zip")) {
+  Remove-Item ($baseDir + "\LogicAppsMonitoringWebJob.zip")
+}
 
 Add-Type -Assembly "System.IO.Compression.FileSystem" ;
-[System.IO.Compression.ZipFile]::CreateFromDirectory($outputFolder, "LogicAppsMonitoring-WebJob.zip") ;
+[System.IO.Compression.ZipFile]::CreateFromDirectory($outputFolder, "LogicAppsMonitoringWebJob.zip") ;
