@@ -28,7 +28,7 @@ namespace LogicAppsMonitoring.Logic
 
             // Note: At the moment it's not possible to create alerts based on events, therefore it's required to
             // use a custom metric.
-            tc.TrackMetric(Microsoft.Azure.Management.Logic.Models.WorkflowStatus.Failed.ToString(), results.Count);
+            tc.TrackMetric("Workflow-" + Microsoft.Azure.Management.Logic.Models.WorkflowStatus.Failed, results.Count);
 
             // This is required only for windows applications
             // https://azure.microsoft.com/en-us/documentation/articles/app-insights-windows-desktop/
