@@ -45,9 +45,6 @@ namespace LogicAppsMonitoring.WebJob
 
                 try
                 {
-                    // Not sure if logging the date range would be helpfull, usig this for debugging only
-                    // Log($"date range: {queryDateRange.StartDate} - {queryDateRange.EndDate}");
-
                     Logic.Monitor.Run(
                         new WorkflowStatusFetcher(
                             config.SubscriptionId,
@@ -59,8 +56,6 @@ namespace LogicAppsMonitoring.WebJob
                 catch (Exception ex)
                 {
                     Log($"Error occurred: {ex.Message}");
-
-                    throw;
                 }
 
                 queryDateRange.NewRange();
