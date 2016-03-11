@@ -37,8 +37,9 @@ Example:
 
 ### Requirements
 
-1.	A Azure Web App with **Always On** [enabled](https://azure.microsoft.com/en-us/documentation/articles/web-sites-configure/)
-2.	Azure Application Insights Environment
+1. Active Directory application and service principal - [details](https://azure.microsoft.com/en-us/documentation/articles/resource-group-create-service-principal-portal/) 
+2.	Azure Web App with **Always On** enabled - [details](https://azure.microsoft.com/en-us/documentation/articles/web-sites-configure/)
+3.	Azure Application Insights Environment
 
 ###### Admins
 
