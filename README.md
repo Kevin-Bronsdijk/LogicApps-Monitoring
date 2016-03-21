@@ -1,6 +1,8 @@
 Azure Logic App Monitoring 
 =============
-Solution which will track failed Logic Apps workflow runs within Azure Applications Insight.
+Solution which will track failed Logic Apps workflow runs within Azure Applications Insight. 
+
+*A blog-post with roughly the same information, however with additonal images can be found here http://devslice.net/2016/03/notifications-on-error-logic-apps/*
 
 * [Introduction](#introduction)
 * [Solution details](#solution-details)
