@@ -76,4 +76,5 @@ Things I would like to implement (soon):
 1. Not required to alter any Logic App workflows. 
 2. Only errors for workflow runs with a failure date greater that the start date if the WeJob will be reported. 
 3. The Webjob only keeps track of custom events and not summiting diagnostic information.
-4. Logging is not real-time
+4. Having multiple Webjob instances active will result in duplicate event registrations. 
+5. Logging is not real-time
