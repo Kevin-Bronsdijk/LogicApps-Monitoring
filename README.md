@@ -1,5 +1,7 @@
 Azure Logic App Monitoring 
 =============
+[![Build status](https://ci.appveyor.com/api/projects/status/ueq2xq8p9oehjd43?svg=true)](https://ci.appveyor.com/project/Kevin-Bronsdijk/logicapps-monitoring)
+
 Solution which will track failed Logic Apps workflow runs within Azure Applications Insight. 
 
 *A blog-post with roughly the same information, however with additonal images can be found here http://devslice.net/2016/03/notifications-on-error-logic-apps/*
@@ -45,7 +47,7 @@ Example:
 
 ###### Admins
 
-For Admins, I’m expecting that they just want to deploy the solution without the need of having Visual Studio or MSBuild. Therefore, a prebuild version of the solution can be found within the **releases** folder of the project.
+For Admins, I’m expecting that they just want to deploy the solution without the need of having Visual Studio or MSBuild. Therefore, a prebuild version of the solution can be found within the [releases](releases/) folder of the project.
 
 1. Update the ApplicationInsights.config and App.config files within the .zip package with your information. 
 2. Create a continuously running Web Job using the portal as in [this article](https://azure.microsoft.com/en-us/documentation/articles/web-sites-create-web-jobs/) or use Powershell.
@@ -63,13 +65,10 @@ The root directory contains a build script which in addition creates a .zip depl
 Given that this solution will only be used until the Azure Logic apps team decides to implement logging natively within the product, I’ve decided to keep the solution simple. The solution can be extended if desired by creating a custom implementation of the IFetcher interface. If you prefer a different logging platform, feel free to implement a custom version of the ITracker interface. 
 In addition, I’m open to suggestions and changes.
 
-Things I would like to implement (soon):
+Things I would like to implement in the near future:
 
-* Embedding DLLs in a compiled executable .
 * Including a summary run every x minutes within the WebJob log.
-* Configuration templates
-* Deployment script
-* Git Deployment options
+* Deployment scripts
 
 ## Important to know
 
