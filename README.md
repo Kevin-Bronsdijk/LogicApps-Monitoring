@@ -2,9 +2,18 @@ Azure Logic App Monitoring
 =============
 [![Build status](https://ci.appveyor.com/api/projects/status/ueq2xq8p9oehjd43?svg=true)](https://ci.appveyor.com/project/Kevin-Bronsdijk/logicapps-monitoring)
 
-Solution which will track failed Logic Apps workflow runs within Azure Applications Insight. 
+***
+### Solution which will track failed Logic Apps workflow runs within Azure Applications Insight. 
 
-*A blog-post with roughly the same information, however with additonal images can be found here http://devslice.net/2016/03/notifications-on-error-logic-apps/*
+A blog-post with more details can be found here; [notifications on error within logic apps](http://devslice.net/2016/03/notifications-on-error-logic-apps/)
+
+**Update:** The Logic Apps team recently announced (July 02, 2016) that Logic Apps integrates with Azure Alerts enabling rich alerting scenarios. Therefore I'm not working on new features or other improvements however, this solution still provides some options not covered within Azure alerts; 
+
+1. Azure Application insights integration (central place for diagnostic information)
+2. Detailed error log
+3. Not required to enable diagnostics for individual Logic Apps.
+
+***
 
 * [Introduction](#introduction)
 * [Solution details](#solution-details)
@@ -14,13 +23,11 @@ Solution which will track failed Logic Apps workflow runs within Azure Applicati
 
 ## Introduction
 
-This project was created due to the lacking ability to send notations on error, or other events if desired, when a Logic App workflow fails for some reason. 
-
-This project will be rendered absolute as soon as the Azure Logic Apps team implements the following feature request: https://feedback.azure.com/forums/287593-logic-apps/suggestions/10101393-notifications-on-error
+This project was created due to the lacking ability to send notations on error when a Logic App workflow fails for some reason. Part of this has been addressed after the Azure team released an update on July 02, 2016. More details can be found here: https://feedback.azure.com/forums/287593-logic-apps/suggestions/10101393-notifications-on-error
 
 ## Solution details
 
-The project consists of a Azure WebJob which constantly monitors for failed Logic App workflow runs. By default, the application only Tracks failed workflow runs however, the project can be extended. More details on this can be found within the “Developers” section
+The project consists of a Azure WebJob which constantly monitors for failed Logic App workflow runs. By default, the application only Tracks failed workflow runs however, the project can be extended.
 
 The logging part of this solution depends on the Azure Application Insight monitoring and diagnostics platform. This to keep the implementation simple and avoid mail, SQL server other dependencies. This will also help keeping all diagnostic information into one central place, and the ability to configure alerts.
 
@@ -45,35 +52,18 @@ Example:
 2.	Azure Web App with **Always On** enabled - [details](https://azure.microsoft.com/en-us/documentation/articles/web-sites-configure/)
 3.	Azure Application Insights Environment
 
-###### Admins
-
-For Admins, I’m expecting that they just want to deploy the solution without the need of having Visual Studio or MSBuild. Therefore, a prebuild version of the solution can be found within the [releases](releases/) folder of the project.
+A prebuild version of the solution can be found within the [releases](releases/) folder of the project. After downloading the release package, make sure to perform the following:
 
 1. Update the ApplicationInsights.config and App.config files within the .zip package with your information. 
 2. Create a continuously running Web Job using the portal as in [this article](https://azure.microsoft.com/en-us/documentation/articles/web-sites-create-web-jobs/) or use Powershell.
 3. Add the same <connectionStrings> configuration within your Azure Web App or you won’t be able to use the WebJob dashboard within the Azure Management Portal.
 4. Within the Azure Applications Insight environment, create dashboards and alerts based on the custom metric called **Workflow-Failed** as desired. 
  
-###### Developers
-
-Make sure you meet the same requirements as cover in the Admins section, using custom build and deployment options instead. 
-
-The root directory contains a build script which in addition creates a .zip deployment package as well. I’ve removed all references to the Azure deployment/publish options available within Visual Studio, because I was having issues with the output of the packages. Will include Nuget Package **Microsoft WebJobs Publish** within the near future.
-
 ## For Developers
 
-Given that this solution will only be used until the Azure Logic apps team decides to implement logging natively within the product, I’ve decided to keep the solution simple. The solution can be extended if desired by creating a custom implementation of the IFetcher interface. If you prefer a different logging platform, feel free to implement a custom version of the ITracker interface. 
-In addition, I’m open to suggestions and changes.
-
-Things I would like to implement in the near future:
-
-* Including a summary run every x minutes within the WebJob log.
-* Deployment scripts
-
+Given that this solution will only be used until the Azure Logic apps team decides to implement logging natively within the product, I’ve decided to keep the solution simple. The solution can be extended if desired by creating a custom implementation of the `IFetcher` interface. If you prefer a different logging platform, feel free to implement a custom version of the `ITracker` interface. 
 ## Important to know
 
-1. Not required to alter any Logic App workflows. 
-2. Only errors for workflow runs with a failure date greater that the start date if the WeJob will be reported. 
-3. The Webjob only keeps track of custom events and not summiting diagnostic information.
-4. Having multiple Webjob instances active will result in duplicate event registrations. 
-5. Logging is not real-time
+1. Not required to alter any existing Logic App workflows. 
+2. Having multiple Webjob instances active will result in duplicate event registrations. 
+3. Logging is not real-time
